@@ -6,7 +6,7 @@
 </head>
 
 <body ng-app="brazilApp">
-      <h4 align="right"><a href = "#login">Logout</a></h4><br>
+      <h4 id="top" align="right"><a href = "#login">Logout</a></h4><br>
 
       <!-- Page Display -->
 
@@ -31,7 +31,7 @@
                       <select class = form-control ng-model="form.region" ng-options="i for i in Regions" multiple></select><br>
                     
                     <label for="state"></font>State:</label>
-                    <select class= form-control ng-model="form.state" ng-options="i for i in States" multiple></select><br>
+                    <select class= form-control ng-model="form.state" ng-options="state for state in getStates()" multiple></select><br>
                     
                     <label for="socioEconomic"></font>Socio Economic Data Columns:</label>
                     <select class = form-control ng-model="form.SocioEconomicDataColumn" ng-options="i for i in SocioEconomicDataColumns" multiple></select><br>   
@@ -44,7 +44,7 @@
 
                     <input type="hidden" id="option" value="">
                     <div class="col-xs-3 info-reset">
-                      <button type="button" class="btn btn-primary" ng-click="getRecords(form)">Submit</button>
+                      <button  type="button" class="btn btn-primary" ng-click="getRecords(form)">Submit</button>
                     </div>
                   
                   </div>
@@ -53,7 +53,6 @@
               </div>
             </div>
 
-                    
                     <table class="table">
                     <br><br>
                     <tr class ="succes" ng-repeat="x in records track by $index">
@@ -114,20 +113,32 @@
                       <td ng-if="x.psf_cove == 0 || x.psf_cove">{{x.psf_cove}}</td>
                       <td ng-if="x.sanita == 0 || x.sanita">{{x.sanita}}</td>
                     </tr>
-                    <button ng-if = "myVar"  type ="button" class="btn btn-primary" ng-model = "form.offset" ng-click="getMoreRecords(form)">Next 100</button>
-                    &nbsp; &nbsp; &nbsp;
-                    <button ng-if = "myVar" id="Download" type ="button" class="btn btn-primary"  export-to-csv = "">Download to CSV</button>
+                    
+                    <button ng-if = "myVar" id="Download" type ="button" class="btn btn-primary" ng-disabled="!isDisabled"  ng-click="exportAllData()">Download to CSV</button><br><br>
+
                   </table>
+
+                  <button ng-if = "myVar"  type ="button" class="btn btn-primary" ng-model = "form.offset" ng-click="getMoreRecords(form)">Next 100</button>
+                    &nbsp; &nbsp; &nbsp;
+                    <button ng-if = "myVar" class="btn btn-primary" ng-model = "form.offset" ng-click="gotoTop()">Scroll to top</button>
 
             </div>
 
    
-  <script type="text/javascript" src="js/framework/angular.js"></script>
-  <script type="text/javascript" src="js/framework/angular-route.js"></script>  
-  <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script> 
-  <script type="text/javascript" src="js/controller/CustomersCtrl.js"></script>
-  <script type="text/javascript" src="js/controller/DownloadCtrl.js"></script>
   
+  <script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
+  <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/framework/angular.js"></script>
+  <script type="text/javascript" src="js/framework/angular-route.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.min.js"></script>     
+  <script type="text/javascript" src="js/main.js"></script> 
+  <script type="text/javascript" src="js/app.js"></script> 
+  <script type="text/javascript" src="js/validation.js"></script>
+  <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script>
+  <script type="text/javascript" src="js/controller/CustomersCtrl.js"></script>
+  <script type="text/javascript" src="js/controller/DownloadCtrl.js"></script>  
 
 
 

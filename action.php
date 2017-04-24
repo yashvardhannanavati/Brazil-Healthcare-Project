@@ -12,7 +12,8 @@ $SocioEconomicDataColumns = ["State_cap", "Coin_code", "State_code", "Reigon", "
 $PopulationAndAgeColumns = ['ageunder1', 'age_14', 'age_49', 'age_1014', 'age_1519', 'age_2029', 'age_3039', 'age_4049', 'age_5059', 'age_6069', 'age_7079', 'more80', 'popb15', 'Pop_sus', 'pop40y' ];
 $HealthCareColumns = ['health_expend_tot', 'trans_sus', 'diabe_reg', 'diabe_track', 'insurance', 'bed', 'new_diabe_reg', 'new_diabe_track', 'obesity', 'diabe_0to14', 'diabe_15', 'sus_rate', 'psf_cove', 'sanita'];
 $offset = $_GET['offset'];
-
+$flag = $_GET['flag'];
+//echo($offset);
 // $Years = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011'];
 // $Regions = ['1', '2', '3', '4', '5'];
 
@@ -24,6 +25,8 @@ $offset = $_GET['offset'];
 // }
 $conn = new mysqli("localhost", "root", "", "BrazilFull");
 $request1 = "SELECT ";
+
+if($SocioEconomicDataColumn[0] != NULL){
 if($SocioEconomicDataColumn[0] == 'All'){
 	for( $i = 0; $i<sizeof($SocioEconomicDataColumns); $i++ ) {
     	if($i != 0 && $i != sizeof($SocioEconomicDataColumns)){
@@ -40,7 +43,9 @@ else{
         $request1 .= $SocioEconomicDataColumn[$l];
     }
 }
+}
 
+if($PopulationAndAgeColumn[0] != NULL){
 if($PopulationAndAgeColumn[0] == 'All'){
     $request1 .= ', ';
     for( $i = 0; $i<sizeof($PopulationAndAgeColumns); $i++ ) {
@@ -59,7 +64,9 @@ else{
         $request1 .= $PopulationAndAgeColumn[$l];
     }
 }
+}
 
+if($HealthCareColumn[0] != NULL){
 if($HealthCareColumn[0] == 'All'){
     $request1 .= ', ';
     for( $i = 0; $i<sizeof($HealthCareColumns); $i++ ) {
@@ -78,8 +85,11 @@ else{
         $request1 .= $HealthCareColumn[$l];
     }
 }
+}
 
 $request1 .= " FROM `table 1`";
+
+if($year[0] != NULL){
 if($year[0] != 'All'){
     $request1 .= " WHERE year IN (";
     for( $i = 0; $i<sizeof($year); $i++ ) {
@@ -89,6 +99,7 @@ if($year[0] != 'All'){
         $request1 .= $year[$i];
     }
     $request1 .= ')';
+}
 }
 // else{
 //     for( $l = 0; $l<sizeof($year); $l++ ){
@@ -119,6 +130,7 @@ if($region[0] != 'All'){
 //         $request1 .= $region[$l];
 //     }
 // }
+if($state[0] != NULL){
 if($state[0] != 'All'){
     $request1 .= " AND State_cap IN (";
     for( $i = 0; $i<sizeof($state); $i++ ) {
@@ -129,7 +141,11 @@ if($state[0] != 'All'){
     }
     $request1 .= ')';
 }
-$request1 .= ' LIMIT 100 ' . 'OFFSET ' .$offset;
+}
+//$request1 .= ' LIMIT 100' . 'OFFSET ' .$offset;
+if($flag == 0){
+    $request1 .= ' LIMIT 100' . ' OFFSET ' .$offset;
+}
 //echo($request1);
 $result = $conn->query($request1);
 

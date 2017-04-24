@@ -39,19 +39,20 @@ table tr:nth-child(even) {
         <!-- Navigation Tabs -->
         <div class="collapse navbar-collapse" id="antidote-navbar">
           <ul class="nav nav-tabs main-nav-ul">
-              <li><a href="#home" id="tab-home"><img src="img/home.jpg">Home</a></li>
-              <li><a href="#brazil" id="tab-brazil"><img src="img/health.png">Brazil</a></li>
-              <li><a href="#toxin" id="tab-toxin"><img src="img/toxin.jpg">Analysis</a></li>
-              <li><a href="#FAQ" id="tab-FAQ"><img src="img/FAQ.jpg">FAQ</a></li>   
+              <li><a href="#home" id="tab-home"><img src="img/home.png">Home</a></li>
+              <li><a href="#brazil" id="tab-brazil"><img src="img/health.png">Data</a></li>
+              <li><a href="#toxin" id="tab-toxin"><img src="img/analysis.png">Analysis</a></li>
+              <li><a href="#FAQ" id="tab-FAQ"><img src="img/question.png">FAQ</a></li>   
           </ul>
         </div>
       </nav>
       
 
-       <div ng-view id="user-info-div"></div>
+      <div ng-view></div>
 
     <!-- Website Footer -->
-    <footer id="footer">
+    <footer style="clear: left" id="footer">
+
       <div class="text-center">
         <img src="img/bu-logo-small.gif">
         <div>
@@ -67,10 +68,10 @@ table tr:nth-child(even) {
         </p>
       </div>
     </footer>
-  </div>  <!-- /container -->
+  </div> 
   
       
-  <!--Default View-->
+
            
 
 
@@ -87,6 +88,11 @@ table tr:nth-child(even) {
   <!--for table style -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.min.js"></script>
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </body>

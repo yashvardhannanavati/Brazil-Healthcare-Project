@@ -18,25 +18,29 @@ app.config(['$routeProvider', "$locationProvider",
       $routeProvider.
         when('/home', {
           templateUrl: 'view/home.html'
+          //controller: 'ClickController'
         }).
         when('/brazil', {
-          templateUrl: 'view/brazil.html',        
+          //controller: 'ClickController',
+          templateUrl: 'view/brazil.html'      
           /*resolve:{
              loggedIn:onlyLoggedIn
             }*/
         }).
         when('/toxin', {
-          templateUrl: 'view/toxin.html'
+          templateUrl: 'view/toxin.html',
+          //controller: 'ClickController'
         }).
         when('/login', {
           templateUrl: 'modules/authentication/views/login.html',
           controller: 'LoginController'
         }).
         when('/FAQ', {
-          templateUrl: 'view/FAQ.html',
+          templateUrl: 'view/FAQ.html'
+          //controller: 'ClickController'
         }).
         otherwise({
-          redirectTo: '/brazil'
+          redirectTo: '/home'
         });
 }]);
 
@@ -188,7 +192,7 @@ app.controller('LoginController',
             AuthenticationService.Login($scope.username, $scope.password, function (response) {
                 if (response.success) {
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    $location.path('/');
+                    $location.path('/brazil');
                 } else {
                     $scope.error = response.message;
                     $scope.dataLoading = false;
@@ -219,11 +223,13 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in
-            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                $location.path('/login');
-            }
+                if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                    $location.path('/login');
+                }
         });
     }]);
+
+
 
 /*  
  * Functions for navigation tab click event 

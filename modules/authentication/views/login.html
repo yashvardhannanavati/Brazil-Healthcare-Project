@@ -2,15 +2,41 @@
 <html ng-app="brazilApp">
 <head>
     <meta charset="utf-8" />
+    <title>Brazil Healthcare Project</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-formhelpers.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
 </head>
+
+<!--Home Page Data-->
 <body>
-<div class="alert alert-info">
-    Username: test<br />
-    Password: test
+<div style="float: left; width: 75%" id="home-page">
+<!--h4 align="right"><a href = "#login">Logout</a></h4-->
+<h3 class="text-center">Brazil Healthcare Data Web Application</h3>
+    <p>
+        Some Text Here. 
+    </p>
+    <!-- Disclaimer -->
+    <div class="alert alert-success">
+        <h4>Disclaimer</h4> 
+        <p>
+            Disclaimer text.
+        </p>
+    </div>
 </div>
-<div ng-show="error" class="alert alert-danger">{{error}}</div>
-<form name="form" ng-submit="login()" role="form">
+
+
+<form style="float: right;width: 23%" name="form" ng-submit="login()" role="form">
+    
+    <div class="alert alert-info">
+        Please Login to access other features!<br />
+    </div>
+
+    <div  ng-show="error" class="alert alert-danger">{{error}}</div>
+
+
+
     <div class="form-group">
         <label for="username">Username</label>
         <i class="fa fa-key"></i>
